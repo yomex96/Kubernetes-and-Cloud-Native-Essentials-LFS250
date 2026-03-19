@@ -1,6 +1,6 @@
 # Networking and Service section
 
-# NetworkPolicy pratcial 
+Implementation of  NetworkPolicy 
 
 ## Consider a production namespace with three Deployments:
 
