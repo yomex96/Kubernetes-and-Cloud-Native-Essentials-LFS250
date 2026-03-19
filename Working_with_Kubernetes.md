@@ -37,6 +37,7 @@ image → the Docker image to use
 
 ports → expose container port 80
 
+then
 
 ---
 
@@ -73,7 +74,7 @@ kubectl explain --help
 
 ---
 
-## demo pod
+## demo pod  2
 
 ```
 docker run --detach nginx:1.19
@@ -97,3 +98,28 @@ kubectl get pods
 kubectl describe pod nginx
 ```
 
+   
+```
+Curl  IP address
+```
+
+You’ll see:
+```
+NAME              READY   STATUS    RESTARTS   AGE
+nginx-demo-pod    1/1     Running   0          10s
+```
+
+# Expose Pod to Access in Browser
+
+```
+kubectl expose pod nginx-demo-pod --type=NodePort --port=80
+kubectl get service nginx-demo-pod
+```
+Note the NodePort assigned (e.g., 31234)
+
+Access in browser:
+
+```
+minikube service nginx-demo-pod
+# OR manually: http://<minikube-ip>:<NodePort>
+```
