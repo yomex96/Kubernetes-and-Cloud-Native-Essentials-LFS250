@@ -161,7 +161,7 @@ kubectl run -it --rm curlpod --image=curlimages/curl -- curl echoserver-service:
 This simulates another Pod calling your echoserver service.
 
 
-# Notes for Demo
+# Additional Demo
 
 Students can scale the deployment:
 
