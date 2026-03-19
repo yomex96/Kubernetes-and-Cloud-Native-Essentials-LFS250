@@ -191,3 +191,37 @@ http://localhost:8080
 Works even without exposing NodePort
 
 Perfect for quick demos on your laptop
+
+----
+
+## demo pod  3
+
+vim pod-two-containers.yaml
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-with-sidecar
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.29
+      ports:
+        - containerPort: 80
+    - name: count
+      image: busybox:1.34
+      args:
+        - /bin/sh
+        - -c
+        - |
+          i=0
+          while true; do
+            echo "$i: $(date)"
+            i=$((i+1))
+            sleep 1
+          done
+```
+
+
+
