@@ -57,6 +57,8 @@ spec:
 
 ## Hands-on of Deployment using Echoserver
 
+vim deployment2.yaml
+
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -79,8 +81,22 @@ spec:
           image: k8s.gcr.io/echoserver:1.10
           ports:
             - containerPort: 8080
+
+---
+
+
+```
+kubectl apply -f deployment2.yaml
 ```
 
+ ```
+ kubectl get pods -o wide
+```
 
+then curl
+
+ ```
+curl ip address:8080
+ ```
 
 
