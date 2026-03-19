@@ -4,11 +4,18 @@
 
 ## Running container - Demo
 
-```bash
+1. Start Minikube
 
+```
 minikube start
 ```
 
+Make sure your Minikube is running the Kubernetes cluster locally.
+
+Check status:
+```
+minikube status
+````
 ---
 
 # 👀  Pull NGINX Image Locally
