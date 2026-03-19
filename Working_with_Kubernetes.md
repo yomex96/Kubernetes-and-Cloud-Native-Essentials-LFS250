@@ -1,6 +1,6 @@
-# Working_with_Kubernetes
+# Working with Kubernetes
 
-# A simple pod.yaml for your Nginx container
+## A simple pod.yaml for your Nginx container
 vim pod.yaml 
 
 ```
@@ -40,10 +40,33 @@ ports → expose container port 80
 
 ---
 
+1. create pod 
 ```
 kubectl create -f pod.yaml
 ```
 
+2. Apply pod
 ```
 kubectl apply -f pod.yaml
+```
+
+3.Get pod
+```
+kubectl get pod
+```
+
+4.Delete pod
+```
+kubectl delete pod nginx-demo-pod
+```
+
+5. verify
+   
+```
+kubectl get pod
+```
+
+6. Explanation
+```
+kubectl explain --help
 ```
