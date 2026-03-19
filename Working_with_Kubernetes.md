@@ -63,10 +63,37 @@ kubectl delete pod nginx-demo-pod
 5. verify
    
 ```
-kubectl get pod
+kubectl get pods
 ```
 
 6. Explanation
 ```
 kubectl explain --help
 ```
+
+---
+
+## demo pod
+
+```
+docker run --detach nginx:1.19
+```
+
+```
+docker ps
+```
+
+```
+kubectl run nginx --image=nginx:1.19
+```
+
+   
+```
+kubectl get pods
+```
+
+   
+```
+kubectl describe pod nginx
+```
+
