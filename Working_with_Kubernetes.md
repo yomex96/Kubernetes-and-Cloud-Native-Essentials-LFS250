@@ -398,7 +398,7 @@ kubectl scale  --replicas=5 rs/nginx
 
 ---
 
-## Local Setup Options
+## Local Setup of kubeView Options
 
 If you’re using Minikube locally, you can run KubeView either as:
 
@@ -413,7 +413,7 @@ kubectl apply -f https://raw.githubusercontent.com/benc-uk/kubeview/master/deplo
 Then port-forward to access locally:
 
 ```
-kubectl port-forward -n kubeview svc/kubeview 8080:80
+kubectl port-forward -n kubeview svc/kubeview 9090:80
 ```
 
 Open in browser:
