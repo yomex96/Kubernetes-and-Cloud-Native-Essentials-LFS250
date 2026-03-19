@@ -5,7 +5,7 @@
 
 
 ```bash
-docker pull nginx
+docker pull nginx1:20
 
 minikube start
 ```
