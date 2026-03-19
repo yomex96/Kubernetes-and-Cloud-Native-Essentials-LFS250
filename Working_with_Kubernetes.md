@@ -336,6 +336,7 @@ spec:
         - containerPort: 80
 ```
 
+---
 Apply the Pod:
 ```
 kubectl apply -f pod.yaml
@@ -346,6 +347,8 @@ Check Pod status:
 ```
 kubectl get pods
 ```
+
+---
 
 2. replicaset sample
 
@@ -371,6 +374,13 @@ spec:
           image: nginx:1.19
           ports:
             - containerPort: 80
+```
+---
+
+Verify Pod status replicated 
+
+```
+kubectl get pods
 ```
 
 ## Local Setup Options
