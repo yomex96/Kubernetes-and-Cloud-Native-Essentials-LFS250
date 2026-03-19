@@ -357,7 +357,7 @@ vim replicaset.yaml
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: nginx-replicaset
+  name: nginx
 spec:
   replicas: 3
   selector:
