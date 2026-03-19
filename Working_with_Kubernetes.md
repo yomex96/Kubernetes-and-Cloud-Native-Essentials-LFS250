@@ -287,7 +287,7 @@ spec:
         - echo "The app is running!" && sleep 3600
 ```
 
-# 🚀 How to Test Locally (Minikube)
+## 🚀 How to Test Locally (Minikube)
 
 Apply the Pod:
 ```
@@ -299,7 +299,6 @@ Check Pod status:
 ```
 kubectl get pods
 ```
-
 more information about pod
 ```
 kubectl describe pod myapp-pod
@@ -316,7 +315,7 @@ kubectl logs myapp-pod -c init-myservice
 
 ---
 
-## demo   4 ( workload objects)
+# demo   4 ( Workload Objects)
 
 1. Pod Sample
 
