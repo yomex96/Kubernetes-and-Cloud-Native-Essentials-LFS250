@@ -376,6 +376,10 @@ spec:
 ```
 ---
 
+Apply the Pod:
+```
+kubectl apply -f replicaset.yaml
+```
 Verify Pod status replicated 
 
 ```
@@ -395,6 +399,50 @@ or
 ```
 kubectl scale  --replicas=5 rs/nginx
 ```
+
+verify 
+```
+kubectl get pods -o wide
+```
+
+3. deployment sample
+
+vim replicaset.yaml
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.19
+          ports:
+            - containerPort: 80
+```
+Apply the Pod:
+```
+kubectl apply -f replicaset.yaml
+```
+```
+kubectl set image deployment/nginx nginx=nginx:1.20
+```
+
+
+
+
 
 ---
 
@@ -418,11 +466,9 @@ kubectl port-forward -n kubeview svc/kubeview 9090:80
 
 Open in browser:
 
-http://localhost:8080
+http://localhost:9090
 
 ✅ You will see your Minikube Pods, ReplicaSets, Deployments visually.
 
-
-
-
+---
 
