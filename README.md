@@ -141,7 +141,7 @@ docker image --help
 
 2.cd Docker_Demo
 
-3. vim Dockerfile
+3.vim Dockerfile
 
 ```bash
 # Base image
