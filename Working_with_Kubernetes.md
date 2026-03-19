@@ -134,9 +134,9 @@ manually: http://<minikube-ip>:<NodePort>
 
 ----
 
-## Find Minikube IP & NodePort Manually
+# Find Minikube IP & NodePort Manually
 
-# 1. Get Minikube IP:
+## 1. Get Minikube IP:
    
 ```
 minikube ip
