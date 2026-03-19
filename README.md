@@ -25,7 +25,7 @@ docker pull nginx:1.20
 
 ---
 
-## ✅ 1. List all images
+## List all images
 
 ```bash
 docker images
@@ -46,7 +46,7 @@ nginx        1.20    abc123xyz      140MB
 
 ---
 
-## ✅ 2. Filter only nginx
+## 2. Filter only nginx
 
 ```bash
 docker images | grep nginx
@@ -54,7 +54,7 @@ docker images | grep nginx
 
 ---
 
-## ✅ 3. Inspect the image 
+## 3. Inspect the image 
 
 ```bash
 docker image inspect nginx:1.20
