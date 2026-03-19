@@ -246,11 +246,6 @@ more information about pod
 kubectl describe pod nginx-with-sidecar
 ```
 
-View logs
-```
-kubectl logs myapp-pod -c myapp-container
-```
-
 
 ## demo   4
 
@@ -296,7 +291,7 @@ spec:
 
 Apply the Pod:
 ```
-kubectl apply -f myapp-pod.yaml
+kubectl apply -f init-myservice.yaml
 ```
 
 Check Pod status:
@@ -305,11 +300,80 @@ Check Pod status:
 kubectl get pods
 ```
 
+more information about pod
+```
+kubectl describe pod myapp-pod
+```
+
 View logs
+```
+kubectl logs myapp-pod -c myapp-container
+```
 ```
 kubectl logs myapp-pod -c init-myservice
 ```
+
+
 ---
+
+## demo   4 ( workload objects)
+
+1. Pod Sample
+
+
+vim pod.yaml
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-nginx-pod
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.19
+      ports:
+        - containerPort: 80
+```
+
+Apply the Pod:
+```
+kubectl apply -f pod.yaml
+```
+
+Check Pod status:
+
+```
+kubectl get pods
+```
+
+2. replicaset sample
+
+vim replicaset.yaml
+
+```
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.19
+          ports:
+            - containerPort: 80
+```
+
+
 
 
 
