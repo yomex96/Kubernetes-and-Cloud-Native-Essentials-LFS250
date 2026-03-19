@@ -101,6 +101,7 @@ then curl if you using ec2 instance
 curl ip address:8080
 ```
 ---
+
 2. Expose the Deployment with a Service
 
 Create a file echoserver-service.yaml
