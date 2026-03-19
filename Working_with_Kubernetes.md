@@ -393,7 +393,7 @@ kubectl get pods -o wide
 kubectl scale rs <replicaset-name> --replicas=<number-of-replicas>
 
 ```
-kubectl scale rs nginx-replicaset --replicas=5
+kubectl scale rs nginx --replicas=5
 ```
 or 
 ```
