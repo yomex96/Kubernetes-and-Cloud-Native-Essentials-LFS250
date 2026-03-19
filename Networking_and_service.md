@@ -1,4 +1,4 @@
-# Networking and serviuce
+# Networking and service
 
 ## Consider a production namespace with three Deployments:
 
@@ -57,7 +57,7 @@ spec:
 
 ## Hands-on of Deployment using Echoserver
 
-vim deployment2.yaml
+1. vim echoserver-service.yaml
 
 ```
 apiVersion: apps/v1
@@ -86,17 +86,49 @@ spec:
 
 
 ```
-kubectl apply -f deployment2.yaml
+kubectl apply -f echoserver-service.yaml
 ```
 
  ```
  kubectl get pods -o wide
 ```
 
-then curl
+then curl if you using ec2 instance
 
  ```
 curl ip address:8080
  ```
 
+2. Expose the Deployment with a Service
+
+Create a file echoserver-service.yaml
+
+vim echoserver-service.yaml
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: echoserver-service
+spec:
+  selector:
+    app: echoserver
+  type: NodePort   # Exposes service on a port of Minikube node
+  ports:
+    - protocol: TCP
+      port: 8080       # Cluster service port
+      targetPort: 8080 # Container port
+```
+
+---
+Apply the service:
+
+```
+kubectl apply -f echoserver-service.yaml
+```
+
+Check service:
+```
+kubectl get svc echoserver-service
+```
 
