@@ -194,7 +194,13 @@ Perfect for quick demos on your laptop
 
 ----
 
-## demo pod  3
+## demo   3
+
+Multiple Containers in a Pod (Sidecar Pattern)
+
+Example: Multiple Containers in a Pod (Sidecar Pattern)
+
+Multiple containers can run in a single Pod. One container is usually the main application, and additional containers provide supporting functionality (called sidecars).
 
 vim pod-two-containers.yaml
 
@@ -222,6 +228,83 @@ spec:
             sleep 1
           done
 ```
+# 🚀 How to Test Locally (Minikube)
+
+Apply the Pod:
+```
+kubectl apply -f myapp-pod.yaml
+```
+
+Check Pod status:
+
+```
+kubectl get pods
+```
+```
+kubectl logs myapp-pod -c myapp-container
+```
+
+
+## demo   4
+
+🔹 Using Init Containers
+
+If you need some tasks to run before the main application starts, you can use initContainers.
+
+They run sequentially and must complete successfully before the main container starts.
+
+Common use case: waiting for a service to be available before starting your app.
+
+vim init-myservice.yaml
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+spec:
+  initContainers:
+    - name: init-myservice
+      image: busybox
+      command:
+        - sh
+        - -c
+        - |
+          until nslookup myservice; do
+            echo waiting for myservice
+            sleep 2
+          done
+  containers:
+    - name: myapp-container
+      image: busybox
+      command:
+        - sh
+        - -c
+        - echo "The app is running!" && sleep 3600
+```
+
+# 🚀 How to Test Locally (Minikube)
+
+Apply the Pod:
+```
+kubectl apply -f myapp-pod.yaml
+```
+
+Check Pod status:
+
+```
+kubectl get pods
+```
+
+View logs (to see init container + main container output):
+```
+kubectl logs myapp-pod -c init-myservice
+```
+
+---
+
 
 
 
