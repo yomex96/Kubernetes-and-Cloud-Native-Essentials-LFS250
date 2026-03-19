@@ -118,7 +118,44 @@ $ docker run -d -p 80:80 tutum/wordpress
 ```bash
 curl http://localhost:80
 ```
+# list  image
 
+```bash
+docker image ls
+```
+# image help 
+```bash
+docker image --help
+```
+---
+
+## Building Container image - Demo
+
+vim Dockerfile
+
+```bash
+# Base image
+FROM nginx:1.20
+
+# Set working directory
+WORKDIR /usr/share/nginx/html
+
+# Copy your custom website
+COPY index.html .
+
+# Expose port 80
+EXPOSE 80
+
+# Keep Nginx running in foreground
+CMD ["nginx", "-g", "daemon off;"]
+```
+---
+vim index.html
+
+```bash
+<h1>Hello LFS250 🚀</h1>
+<p>This is running inside a Docker container</p>
+```
 
 
 
