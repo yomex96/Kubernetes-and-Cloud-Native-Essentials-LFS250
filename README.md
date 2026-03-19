@@ -205,8 +205,9 @@ http://localhost:8080
 To check ip address
 
 view ip address
+```
 curl ifconfig.io
-
+```
 
 
 
