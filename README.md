@@ -3,40 +3,113 @@
 ---
 ## Running container - Demo
 
+✅ Correct format is:
 
 ```bash
-docker pull nginx1:20
-
-minikube start
+docker pull nginx:1.20
 ```
----
 
-```bash
-docker run -d -p 8080:80 nginx1:20
-```
 
 ---
 
-# 🔥 Option 2 (If you want to SHOW the full process)
+# 👀  Pull NGINX Image Locally
 
 ```bash
-docker run nginx1:20
+docker pull nginx:1.20
 ```
-Docker will automatically:
-
-1. Check local machine
-2. Not find image
-3. Pull from registry
-4. Run container
-
-
-> “This is how images are fetched from Docker Hub”
 
 ---
 
-# 🧠 Bonus 
+## ✅ 1. List all images
 
 ```bash
 docker images
 ```
+
+### Example output:
+
+```
+REPOSITORY   TAG     IMAGE ID       SIZE
+nginx        1.20    abc123xyz      140MB
+```
+
+👉 This confirms:
+
+* Image is downloaded
+* Stored locally
+* Ready to run
+
+---
+
+## ✅ 2. Filter only nginx
+
+```bash
+docker images | grep nginx
+```
+
+---
+
+## ✅ 3. Inspect the image 
+
+```bash
+docker image inspect nginx:1.20
+```
+
+---
+
+
+# 🚀 Now Run It 
+
+```bash
+docker run -d -p 8080:80 nginx:1.20
+```
+---
+or 
+
+```bash
+docker run --detach --publish-all nginx1.20
+```
+---
+or
+```bash
+docker run nginx:1.20
+```
+---
+## 👀 View running containers
+
+```bash
+docker ps
+```
+## 👀 View on your browser
+
+```bash
+http://localhost:8080
+```
+
+---
+
+# 💡 Pro Demo Flow (clean version)
+
+```bash
+docker pull nginx:1.20
+docker images
+docker run -d -p 8080:80 nginx:1.20
+docker ps
+```
+
+---
+
+# 🔥 Extra 
+
+Show this:
+
+```bash
+docker history nginx:1.20
+```
+
+
+
+
+
+
 
