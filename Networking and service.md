@@ -54,3 +54,33 @@ spec:
         - protocol: TCP
           port: 443
 ```
+
+## Hands-on of Deployment using Echoserver
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echoserver
+  labels:
+    app: echoserver
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: echoserver
+  template:
+    metadata:
+      labels:
+        app: echoserver
+    spec:
+      containers:
+        - name: echoserver
+          image: k8s.gcr.io/echoserver:1.10
+          ports:
+            - containerPort: 8080
+```
+
+
+
+
