@@ -98,14 +98,14 @@ docker ps
 
 ---
 
-# 🔥 Extra 
+## 🔥 Extra 
 
 Show this:
 
 ```bash
 docker history nginx:1.20
 ```
-# 🔥 stop containner
+## 🔥 stop containner
 
 ```bash
 docker stop <containerID>
