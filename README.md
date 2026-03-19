@@ -105,7 +105,11 @@ Show this:
 ```bash
 docker history nginx:1.20
 ```
+# 🔥 stop containner
 
+```bash
+docker stop <containerID>
+```
 
 
 
