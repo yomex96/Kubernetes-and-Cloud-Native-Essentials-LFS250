@@ -1,4 +1,6 @@
-# Here’s a simple pod.yaml for your Nginx container
+# A simple pod.yaml for your Nginx container
+
+vim pod.yaml 
 
 ```
 apiVersion: v1
