@@ -170,7 +170,7 @@ http://192.168.49.2:31234
 ```
 You’ll see your Nginx page.
 
-## 3. Optional: Port Forward (Another Easy Way)
+## 3. Optional: Port Forward (Another Easy Way)✅ Best Option
 
 You can port-forward a Pod directly to localhost:
 
@@ -373,6 +373,29 @@ spec:
             - containerPort: 80
 ```
 
+## Local Setup Options
+
+If you’re using Minikube locally, you can run KubeView either as:
+
+Run as a Pod in your cluster
+
+```
+kubectl create namespace kubeview
+```
+```
+kubectl apply -f https://raw.githubusercontent.com/benc-uk/kubeview/master/deploy/kubeview-deployment.yaml
+```
+Then port-forward to access locally:
+
+```
+kubectl port-forward -n kubeview svc/kubeview 8080:80
+```
+
+Open in browser:
+
+http://localhost:8080
+
+✅ You will see your Minikube Pods, ReplicaSets, Deployments visually.
 
 
 
