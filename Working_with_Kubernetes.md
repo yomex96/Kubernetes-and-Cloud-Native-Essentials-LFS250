@@ -436,6 +436,8 @@ Apply the Pod:
 ```
 kubectl apply -f replicaset.yaml
 ```
+
+update image of your container using
 ```
 kubectl set image deployment/nginx nginx=nginx:1.20
 ```
