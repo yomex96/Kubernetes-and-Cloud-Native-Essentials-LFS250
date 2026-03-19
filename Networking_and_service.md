@@ -1,8 +1,8 @@
 # Networking and Service section
 
-Implementation of  NetworkPolicy 
+## Implementation of  NetworkPolicy 
 
-## Consider a production namespace with three Deployments:
+Consider a production namespace with three Deployments:
 
 frontend Pods labeled app=frontend
 
