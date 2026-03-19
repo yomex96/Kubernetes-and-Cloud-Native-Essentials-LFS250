@@ -1,14 +1,13 @@
 # Kubernetes-and-Cloud-Native-Essentials-LFS250
 
 ---
+
 ## Running container - Demo
 
-✅ Correct format is:
-
 ```bash
-docker pull nginx:1.20
-```
 
+minikube start
+```
 
 ---
 
@@ -80,7 +79,7 @@ docker run nginx:1.20
 ```bash
 docker ps
 ```
-## 👀 View on your browser
+## 👀 Then open / View on your browser
 
 ```bash
 http://localhost:8080
