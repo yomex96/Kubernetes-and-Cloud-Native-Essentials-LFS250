@@ -17,3 +17,33 @@ spec:
     ports:
     - containerPort: 80
 ```
+---
+
+# ✅ Explanation
+
+apiVersion: v1 → core API
+
+kind: Pod → we are creating a Pod
+
+metadata.name → the name of the Pod
+
+labels → useful for Services or Deployments
+
+containers → list of containers in the Pod
+
+name → container name
+
+image → the Docker image to use
+
+ports → expose container port 80
+
+
+---
+
+```
+kubectl create -f pod.yaml
+```
+
+```
+kubectl apply -f pod.yaml
+```
