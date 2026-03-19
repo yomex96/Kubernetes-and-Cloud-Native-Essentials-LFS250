@@ -127,8 +127,10 @@ Access in browser:
 
 ```
 minikube service nginx-demo-pod
-# OR manually: http://<minikube-ip>:<NodePort>
 ```
+OR 
+manually: http://<minikube-ip>:<NodePort>
+
 
 ----
 
