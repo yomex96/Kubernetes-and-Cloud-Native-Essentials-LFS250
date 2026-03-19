@@ -1,10 +1,9 @@
 # Kubernetes-and-Cloud-Native-Essentials-LFS250
 
----
 
 ## Running container - Demo
 
-1. Start Minikube
+ Start Minikube
 
 ```
 minikube start
