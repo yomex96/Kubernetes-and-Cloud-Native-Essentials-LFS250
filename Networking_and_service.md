@@ -57,7 +57,7 @@ spec:
           port: 443
 ```
 
-## Hands-on of Deployment using Echoserver
+## Hands-on of demo showing the use of service for  Deployment with Echoserver
 
 1. vim echoserver-service.yaml
 
