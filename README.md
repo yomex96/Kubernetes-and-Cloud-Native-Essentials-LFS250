@@ -1,7 +1,7 @@
-Kubernetes-and-Cloud-Native-Essentials-LFS250
+# Kubernetes-and-Cloud-Native-Essentials-LFS250
 
 ---
-# Running container - Demo
+## Running container - Demo
 
 
 ```bash
