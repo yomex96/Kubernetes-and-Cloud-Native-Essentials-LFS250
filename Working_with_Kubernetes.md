@@ -93,33 +93,99 @@ kubectl run nginx --image=nginx:1.19
 kubectl get pods
 ```
 
+You’ll see:
+```
+NAME              READY   STATUS    RESTARTS   AGE
+nginx    1/1     Running   0          10s
+```
    
 ```
 kubectl describe pod nginx
 ```
 
-   
+If using EC2 instance 
 ```
 Curl  IP address
 ```
 
-You’ll see:
-```
-NAME              READY   STATUS    RESTARTS   AGE
-nginx-demo-pod    1/1     Running   0          10s
-```
-
-# Expose Pod to Access in Browser
+## Expose Pod to Access in Browser
 
 ```
-kubectl expose pod nginx-demo-pod --type=NodePort --port=80
-kubectl get service nginx-demo-pod
+kubectl expose pod nginx --type=NodePort --port=80
+kubectl get service nginx
 ```
 Note the NodePort assigned (e.g., 31234)
 
+✅ This will automatically:
+
+Open a browser
+
+```
+Point to the correct URL (http://<minikube-ip>:<nodePort>)
 Access in browser:
+```
 
 ```
 minikube service nginx-demo-pod
 # OR manually: http://<minikube-ip>:<NodePort>
 ```
+
+----
+
+## Find Minikube IP & NodePort Manually
+
+# 1. Get Minikube IP:
+   
+```
+minikube ip
+```
+
+```
+Example output:
+
+192.168.49.2
+```
+# 2. Get the service NodePort:
+
+```
+kubectl get service nginx-demo-pod
+```
+
+Output:
+
+```
+NAME              TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+nginx-demo-pod    NodePort   10.96.187.102    <none>        80:31234/TCP   1m
+
+```
+
+31234 is the NodePort
+
+```
+Open browser:
+
+http://192.168.49.2:31234
+```
+You’ll see your Nginx page.
+
+## 3. Optional: Port Forward (Another Easy Way)
+
+You can port-forward a Pod directly to localhost:
+
+```
+kubectl port-forward pod/nginx-demo-pod 8080:80
+```
+
+This forwards localhost:8080 → Pod’s port 80
+
+```
+Open in browser:
+
+http://localhost:8080
+```
+
+✅ Advantages:
+
+Works even without exposing NodePort
+
+Perfect for quick demos on your laptop
