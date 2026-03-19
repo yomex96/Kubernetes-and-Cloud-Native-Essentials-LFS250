@@ -131,7 +131,11 @@ docker image --help
 
 ## Building Container image - Demo
 
-vim Dockerfile
+1.mkdir Docker_Demo
+
+2.cd Docker_Demo
+
+3. vim Dockerfile
 
 ```bash
 # Base image
@@ -150,7 +154,8 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
 ---
-vim index.html
+
+4.vim index.html
 
 ```bash
 <!DOCTYPE html>
@@ -167,6 +172,41 @@ vim index.html
 </body>
 </html>
 ```
+
+---
+# 🚀 Demo Flow
+
+5.Build the image:
+
+docker build -t nginx-custom:v1 .
+
+list the build image
+
+```bash
+docker image ls
+```
+
+6.Run the container:
+
+docker run -d -p 8080:80 nginx-custom:v1
+
+```bash
+docker container ls
+```
+or 
+```bash
+docker ps ls
+```
+
+7.Open in Chrome:
+
+http://localhost:8080
+
+To check ip address
+
+view ip address
+curl ifconfig.io
+
 
 
 
