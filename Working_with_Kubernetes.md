@@ -386,6 +386,18 @@ kubectl get pods
 kubectl get pods -o wide
 ```
 
+kubectl scale rs <replicaset-name> --replicas=<number-of-replicas>
+
+```
+kubectl scale rs nginx-replicaset --replicas=5
+```
+or 
+```
+kubectl scale  --replicas=5 rs/nginx
+```
+
+---
+
 ## Local Setup Options
 
 If you’re using Minikube locally, you can run KubeView either as:
