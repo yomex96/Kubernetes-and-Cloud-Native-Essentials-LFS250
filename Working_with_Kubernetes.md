@@ -382,6 +382,10 @@ Verify Pod status replicated
 kubectl get pods
 ```
 
+```
+kubectl get pods -o wide
+```
+
 ## Local Setup Options
 
 If you’re using Minikube locally, you can run KubeView either as:
