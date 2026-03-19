@@ -153,8 +153,19 @@ CMD ["nginx", "-g", "daemon off;"]
 vim index.html
 
 ```bash
-<h1>Hello LFS250 🚀</h1>
-<p>This is running inside a Docker container</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LFS250 Demo</title>
+</head>
+<body>
+    <h1>Welcome to LFS250 🚀</h1>
+    <p>This Nginx container is running your custom web page.</p>
+    <p>Docker + Nginx = Hands-on Learning!</p>
+</body>
+</html>
 ```
 
 
