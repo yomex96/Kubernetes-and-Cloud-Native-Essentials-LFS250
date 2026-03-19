@@ -83,24 +83,24 @@ spec:
           image: k8s.gcr.io/echoserver:1.10
           ports:
             - containerPort: 8080
+```
 
 ---
-
 
 ```
 kubectl apply -f echoserver-service.yaml
 ```
 
- ```
+```
  kubectl get pods -o wide
 ```
 
 then curl if you using ec2 instance
 
- ```
+```
 curl ip address:8080
- ```
-
+```
+---
 2. Expose the Deployment with a Service
 
 Create a file echoserver-service.yaml
