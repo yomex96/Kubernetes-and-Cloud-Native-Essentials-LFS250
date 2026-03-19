@@ -110,6 +110,16 @@ docker history nginx:1.20
 ```bash
 docker stop <containerID>
 ```
+## running wordpress site 
+
+```bash
+$ docker run -d -p 80:80 tutum/wordpress
+```
+```bash
+curl http://localhost:80
+```
+
+
 
 
 
