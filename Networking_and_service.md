@@ -1,4 +1,6 @@
-# Networking and service
+# Networking and Service section
+
+# NetworkPolicy pratcial 
 
 ## Consider a production namespace with three Deployments:
 
@@ -132,3 +134,45 @@ Check service:
 kubectl get svc echoserver-service
 ```
 
+---
+## Access the Service in Browser
+
+Minikube gives a simple command to open the service in your browser:
+```
+minikube service echoserver-service
+```
+
+This will open the service URL automatically.
+```
+
+Minikube maps the NodePort to a local port so you can access it like http://<minikube-ip>:<nodeport>.
+```
+
+Optional: Access from Inside Cluster
+
+For debugging or demonstration:
+
+```
+
+kubectl run -it --rm curlpod --image=curlimages/curl -- curl echoserver-service:8080
+```
+
+This simulates another Pod calling your echoserver service.
+
+
+# Notes for Demo
+
+Students can scale the deployment:
+
+```
+kubectl scale deployment echoserver --replicas=5
+kubectl get pods
+```
+
+You can also show Minikube dashboard:
+
+```
+minikube dashboard
+```
+
+Everything is local, no cloud cost, and perfect for hands-on sessions.
