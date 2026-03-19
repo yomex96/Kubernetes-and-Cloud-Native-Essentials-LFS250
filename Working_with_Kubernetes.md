@@ -240,6 +240,13 @@ Check Pod status:
 ```
 kubectl get pods
 ```
+
+more information about pod
+```
+kubectl describe pod nginx-with-sidecar
+```
+
+View logs
 ```
 kubectl logs myapp-pod -c myapp-container
 ```
@@ -302,7 +309,6 @@ View logs
 ```
 kubectl logs myapp-pod -c init-myservice
 ```
-
 ---
 
 
