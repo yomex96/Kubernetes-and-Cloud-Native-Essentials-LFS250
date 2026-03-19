@@ -298,7 +298,7 @@ Check Pod status:
 kubectl get pods
 ```
 
-View logs (to see init container + main container output):
+View logs
 ```
 kubectl logs myapp-pod -c init-myservice
 ```
