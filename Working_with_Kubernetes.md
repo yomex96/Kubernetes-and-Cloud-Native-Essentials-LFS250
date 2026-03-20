@@ -485,7 +485,7 @@ spec:
 
 
 
-# 🟢 Persistent Volumes (PV) – Summary
+### 🟢 Persistent Volumes (PV) – Summary
 
 A **PersistentVolume (PV)** is a **cluster-wide storage resource** in Kubernetes.
 
