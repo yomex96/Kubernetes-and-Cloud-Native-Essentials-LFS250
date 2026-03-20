@@ -94,6 +94,9 @@ kubectl expose pod nginx --type=NodePort --port=80
 
 minikube service nginx
 ```
+```
+kubectl expose pod nginx --type=NodePort --port=80 --node-port=30001
+```
 
 ---
 
