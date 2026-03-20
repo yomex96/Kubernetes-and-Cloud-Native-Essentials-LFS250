@@ -93,8 +93,11 @@ minikube   Ready    control-plane   1m   v1.30.0
 
 ```bash
 kubectl run nginx --image=nginx:1.20 --port=80
+
 kubectl get pods
+
 kubectl expose pod nginx --type=NodePort --port=80
+
 minikube service nginx
 ```
 
@@ -108,6 +111,34 @@ minikube dashboard
 
 Opens the Kubernetes dashboard in your browser for visual monitoring — very handy for demos.
 
+
+#  Manual Way
+
+If you want to manually open it:
+
+Get the service details:
+```
+kubectl get svc
+```
+
+Example output:
+```
+NAME    TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+nginx   NodePort   10.96.123.45   <none>        80:30001/TCP   2m
+```
+Here 30001 is the NodePort.
+
+Get Minikube IP:
+```
+minikube ip
+```
+Suppose it returns: 192.168.49.2
+
+Open in browser:
+
+```
+http://192.168.49.2:30001
+```
 ---
 
 ## 🧹 Clean Up
