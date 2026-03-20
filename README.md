@@ -109,7 +109,7 @@ kubectl delete pod nginx && kubectl delete service nginx
 ```
 
 * This removes the `nginx` Pod and its Service.
-* 
+  
 * Confirm deletion with:
 
 ```bash
@@ -123,7 +123,7 @@ kubectl get svc
 minikube delete && minikube start
 ```
 
-* This deletes all Pods, Services, and the cluster, letting you start fresh.
+* This deletes all Pods, Services, and the cluster, to start afresh.
 
 ---
 
