@@ -968,7 +968,7 @@ metadata:
 > **Authentication → RBAC → Admission → Secure Workloads**
 
 
-# 🟢 Kubernetes Security (Short Summary)
+# 🟢 Kubernetes Security 
 
 * Security is **end-to-end** (infrastructure → cluster → containers → network)
 * It must start at **design time** and is a **continuous process**
@@ -989,7 +989,7 @@ metadata:
 
 ---
 
-# 🎯 Best Practice (From Your Content)
+# 🎯 Best Practice 
 
 * Use **least privilege** (avoid `cluster-admin`)
 * Prefer **Role over ClusterRole**
@@ -997,10 +997,6 @@ metadata:
 * Continuously **monitor, audit, and improve**
 
 ---
-
-This is **perfect for your LFS250 demo + slides**.
-
-If you want, I can compress this into a **1-slide version (super high-impact)** or a **live demo script you can speak while typing commands**.
 
 
  ## 9. Scheduling Objects  (nodeSelector,Node Affinity , nodeName,Topology Spread (High Availability) )
