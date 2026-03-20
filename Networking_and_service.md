@@ -132,7 +132,37 @@ kubectl apply -f echoserver-service.yaml
 
 Check service:
 ```
-kubectl get svc echoserver-service
+kubectl get svc 
+```
+curl cluster IP:
+```
+watch curl <clusterIp:8080>
+```
+
+
+
+
+# Additional Demo
+
+Students can scale the deployment:
+
+```
+kubectl scale deployment echoserver --replicas=5
+kubectl get pods
+```
+
+You can also show Minikube dashboard:
+
+```
+minikube dashboard
+```
+
+Everything is local, no cloud cost, and perfect for hands-on sessions.
+
+
+Google Cloud Platform microservices-demo
+```
+https://github.com/GoogleCloudPlatform/microservices-demo
 ```
 
 ---
@@ -159,21 +189,3 @@ kubectl run -it --rm curlpod --image=curlimages/curl -- curl echoserver-service:
 ```
 
 This simulates another Pod calling your echoserver service.
-
-
-# Additional Demo
-
-Students can scale the deployment:
-
-```
-kubectl scale deployment echoserver --replicas=5
-kubectl get pods
-```
-
-You can also show Minikube dashboard:
-
-```
-minikube dashboard
-```
-
-Everything is local, no cloud cost, and perfect for hands-on sessions.
