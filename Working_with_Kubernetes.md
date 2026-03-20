@@ -442,6 +442,113 @@ update image of your container using
 kubectl set image deployment/nginx nginx=nginx:1.20
 ```
 
+4. PersistentVolume (NFS)
+vim PersistentVolume.yaml
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-nfs
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /data/nfs-storage
+    server: 192.168.1.10
+```
+
+> **Pod is temporary, but PV is permanent storage**
+
+---
+
+## 🔹 Explanation of This Example
+
+* **20Gi storage** available
+* **RWX** → multiple Pods/nodes can use it
+* Uses **NFS server** at `192.168.1.10`
+* Data is **retained even after release**
+
+---
+
+  * **PV = supply (storage provided)**
+  * **PVC = demand (storage requested)**
+    
+* Show that:
+
+  * Pod dies ❌ → data still exists ✅
+* Use **Retain policy** for safe demos
+
+
+
+# 🟢 Persistent Volumes (PV) – Summary
+
+A **PersistentVolume (PV)** is a **cluster-wide storage resource** in Kubernetes.
+
+* It is **provisioned by an admin** (static) or automatically via a **StorageClass** (dynamic).
+* It **abstracts the underlying storage** (NFS, cloud disk, local disk, etc.).
+* Its lifecycle is **independent of Pods** → data **persists even if Pods are deleted**.
+
+---
+
+## 🔹 Key Concepts
+
+### ✅ Capacity
+
+* Defines storage size
+* Example: `10Gi`, `20Gi`
+
+---
+
+### ✅ Access Modes
+
+* **ReadWriteOnce (RWO)** → One node can read/write
+* **ReadOnlyMany (ROX)** → Many nodes read-only
+* **ReadWriteMany (RWX)** → Many nodes read/write
+
+---
+
+### ✅ Volume Mode
+
+* `Filesystem` → mounted as normal file system (default)
+* `Block` → raw block device
+
+---
+
+### ✅ Reclaim Policy
+
+What happens when a PVC releases the PV:
+
+* **Retain** → keeps data (manual cleanup) ✅ (safe for demos)
+* **Delete** → deletes storage automatically
+* **Recycle** → deprecated
+
+---
+
+### ✅ Storage Backend
+
+* Defines **where data lives**
+
+  * NFS
+  * AWS EBS / Azure Disk
+  * iSCSI
+  * Ceph
+
+---
+
+### ✅ Node Affinity
+
+* Controls **which nodes can use the volume**
+* Important for **cloud zones / local disks**
+
+---
+
+
+
 
 
 
