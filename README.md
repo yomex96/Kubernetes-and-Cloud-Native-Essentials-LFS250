@@ -22,7 +22,7 @@ If not:
 
 * Install Docker
 * Start Docker daemon
-
+* open  Docker application
 ---
 
 ### 2. Minikube is installed (for Kubernetes part)
