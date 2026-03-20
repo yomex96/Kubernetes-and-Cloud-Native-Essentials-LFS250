@@ -362,7 +362,7 @@ docker system prune -a
 
 ---
 
-# 🚀 Clean Demo Flow (Best Practice Version)
+## 🚀 Clean Demo Flow 
 
 If you want to present like a **pro instructor**, use this:
 
