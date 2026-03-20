@@ -317,7 +317,7 @@ kubectl logs myapp-pod -c init-myservice
 
 # demo   4 ( Workload Objects)
 
-1. Pod Sample
+## 1. Pod Sample
 
 
 vim pod.yaml
@@ -349,7 +349,7 @@ kubectl get pods
 
 ---
 
-2. replicaset sample
+## 2. replicaset sample
 
 vim replicaset.yaml
 
@@ -405,7 +405,7 @@ verify
 kubectl get pods -o wide
 ```
 
-3. deployment sample
+## 3. deployment sample
 
 vim replicaset.yaml
 
@@ -442,7 +442,7 @@ update image of your container using
 kubectl set image deployment/nginx nginx=nginx:1.20
 ```
 
-4. PersistentVolume (NFS)
+## 4. PersistentVolume (NFS)
 vim PersistentVolume.yaml
 
 ```yaml
@@ -497,14 +497,14 @@ A **PersistentVolume (PV)** is a **cluster-wide storage resource** in Kubernetes
 
 ## 🔹 Key Concepts
 
-### ✅ Capacity
+#### ✅ Capacity
 
 * Defines storage size
 * Example: `10Gi`, `20Gi`
 
 ---
 
-### ✅ Access Modes
+#### ✅ Access Modes
 
 * **ReadWriteOnce (RWO)** → One node can read/write
 * **ReadOnlyMany (ROX)** → Many nodes read-only
@@ -545,7 +545,355 @@ What happens when a PVC releases the PV:
 * Controls **which nodes can use the volume**
 * Important for **cloud zones / local disks**
 
+
+## 5. PersistentVolumeClaims (PVC)
+
+vim PersistentVolumeClaims.yaml
+
+
+```yaml id="pvc-example"
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: app-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: ebs-gp2
+```
+
 ---
+
+## 🔹 Example Pod Using the PVC
+
+```yaml id="pod-with-pvc"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+spec:
+  containers:
+    - name: app-container
+      image: nginx
+      volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: app-storage
+  volumes:
+    - name: app-storage
+      persistentVolumeClaim:
+        claimName: app-data-pvc
+```
+
+* Any data written here:
+
+  * ✅ **Persists after Pod restart**
+  * ✅ **Survives rescheduling**
+  * ❌ **Not lost like normal container storage**
+> **Without PVC → data is lost when Pod dies**
+> **With PVC → data survives**
+
+---
+
+# 🧠 Summary
+
+A **PersistentVolumeClaim (PVC)** is a **request for storage** by a user.
+
+* Just like a Pod requests **CPU and memory**, a PVC requests **storage**.
+* It specifies:
+
+  * **Size** (e.g., 10Gi)
+  * **Access mode** (RWO, RWX, ROX)
+  * **StorageClass** (type of storage, e.g., AWS EBS)
+
+---
+
+## 🔹 How It Works
+
+1. You create a **PVC (request)**
+2. Kubernetes looks for a matching **PV (storage)**
+3. If found → **binds PVC to PV**
+4. If not found → **creates one dynamically** (if StorageClass exists)
+
+---
+
+## 🔹 Key Concepts
+
+* **PVC = Demand (request)**
+* **PV = Supply (actual storage)**
+* Once bound → **exclusive relationship** (1 PVC ↔ 1 PV)
+
+---
+
+## 🔹 In the Pod
+
+* The Pod **mounts the PVC as a volume**
+* Example path:
+
+```text
+/usr/share/nginx/html
+```
+
+## 6. StorageClass
+
+vim StorageClass.yaml
+
+
+```yaml id="storageclass-example"
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ebs-gp2
+provisioner: ebs.csi.aws.com
+parameters:
+  type: gp2
+  fsType: ext4
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+```
+
+---
+
+## 🔹 Example PVC Using StorageClass
+
+```yaml id="pvc-with-sc"
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-app-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: ebs-gp2
+```
+
+---
+
+
+ * **PV = storage**
+  * **PVC = request**
+  * **StorageClass = automation (how to create storage)**
+
+
+# 🧠 Summary 
+
+A **StorageClass** defines **how storage is dynamically created** in Kubernetes.
+
+* It tells Kubernetes:
+
+  * **Which storage to use**
+  * **How to create it**
+  * **What performance/type to apply**
+
+---
+> **StorageClass = automation layer for storage**
+
+## 🔹 Why StorageClass?
+
+Without StorageClass:
+
+* ❌ You must manually create PVs (static provisioning)
+
+With StorageClass:
+
+* ✅ Kubernetes **automatically creates PVs** when a PVC is requested
+* ✅ Enables **dynamic provisioning**
+* ✅ Scales easily in cloud environments
+
+---
+
+## 🔹 Key Components
+
+### ✅ Provisioner
+
+* The **driver that creates storage**
+* Example:
+
+  * `ebs.csi.aws.com` (AWS EBS)
+  * Other clouds use different CSI drivers
+
+---
+
+### ✅ Parameters
+
+* Define storage characteristics:
+
+  * Disk type (e.g., `gp2`)
+  * Filesystem (e.g., `ext4`)
+
+---
+
+### ✅ Reclaim Policy
+
+* What happens when PVC is deleted:
+
+  * **Delete** → removes storage automatically
+  * **Retain** → keeps data
+  * **Recycle** → deprecated
+
+---
+
+### ✅ Volume Binding Mode
+
+* **Immediate** → create volume instantly
+* **WaitForFirstConsumer** → wait until Pod is scheduled
+
+  * ✅ Best for cloud (ensures correct zone placement)
+
+---
+
+## 🔄 Dynamic Provisioning Flow
+
+1. Create **StorageClass** → defines *how* storage is created
+2. Create **PVC** → requests storage
+3. Kubernetes:
+
+   * Automatically creates a **PV**
+   * Binds it to the PVC
+4. Pod mounts the PVC and uses storage
+5. When PVC is deleted:
+
+   * PV is handled based on **reclaim policy**
+
+---
+
+ ## 7. ConfigMap Example (Nginx Configuration)
+
+vim ConfigMap.yaml
+
+```yaml id="configmap-nginx"
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-conf
+data:
+  nginx.conf: |
+    user nginx;
+    worker_processes 3;
+    error_log /var/log/nginx/error.log;
+
+    events {
+      worker_connections 1024;
+    }
+
+    http {
+      server {
+        listen 80;
+        server_name _;
+        location / {
+          root /usr/share/nginx/html;
+          index index.html index.htm;
+        }
+      }
+    }
+```
+
+---
+
+## 🔹 Pod Using ConfigMap
+
+```yaml id="pod-configmap"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.29
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: nginx-conf
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+  volumes:
+    - name: nginx-conf
+      configMap:
+        name: nginx-conf
+```
+
+
+* **ConfigMap → public config (safe)**
+* **Secret → sensitive config (protect it)**
+---
+
+# 🧠 Summary (ConfigMap)
+
+A **ConfigMap** is used to store **non-sensitive configuration data** in Kubernetes.
+
+* Separates **configuration from application code**
+* Can store:
+
+  * Config files (like `nginx.conf`)
+  * Environment variables
+* Can be mounted as:
+
+  * Files
+  * Environment variables
+
+---
+
+## 🔑 Key Idea
+
+> **ConfigMap = configuration (non-sensitive data)**
+
+---
+
+# 🔐 Secrets (Important Concept)
+
+## 🧠 Summary
+
+A **Secret** is used to store **sensitive data**, such as:
+
+* Passwords
+* API keys
+* Tokens
+* Certificates
+
+---
+
+## 🔹 Key Points
+
+* Stored in **base64 encoded format** (not encryption ❗)
+* Can be mounted into Pods like ConfigMaps
+* Used for **secure configuration**
+
+---
+
+## ⚠️ Important Note
+
+* Base64 ≠ security
+* Secrets are **not encrypted by default** in all clusters
+* May be readable in:
+
+  * memory
+  * etcd
+
+---
+
+## 🔐 Production Best Practice
+
+Use external secret managers like:
+
+* **HashiCorp Vault**
+* **AWS Secrets Manager**
+* **Google Secret Manager**
+
+These provide:
+
+* Encryption
+* Access control
+* Audit logs
+* Secret rotation
+
+---
+
 
 
 
