@@ -101,7 +101,7 @@ minikube service nginx
 
 ---
 
-#  Manual Way
+##  Manual Way
 
 If you want to manually open it:
 
