@@ -245,3 +245,266 @@ ports:
 * Always check `kubectl get svc` first before assigning a NodePort.
 * Use `minikube service --url <svc-name>` to get a working URL without worrying about the port.
 
+
+Your demo is solid already 👏 — you’re covering Docker + Nginx + basic container lifecycle very well.
+
+Let me tighten it up and show you **what you *must verify before starting*** (this is what instructors and real DevOps engineers actually check first).
+
+---
+
+# ✅ 🔍 Pre-Flight Checklist (VERY IMPORTANT)
+
+Before running anything, verify these:
+
+## 1. Docker is installed and running
+
+```bash
+docker --version
+```
+
+👉 Expected:
+
+```
+Docker version XX.X.X
+```
+
+If not:
+
+* Install Docker
+* Start Docker daemon
+
+---
+
+## 2. Minikube is installed (for Kubernetes part)
+
+```bash
+minikube version
+```
+
+---
+
+## 3. Minikube cluster is running
+
+```bash
+minikube status
+```
+
+👉 You should see:
+
+```
+host: Running
+kubelet: Running
+apiserver: Running
+```
+
+If not:
+
+```bash
+minikube start
+```
+
+---
+
+## 4. kubectl is configured
+
+```bash
+kubectl get nodes
+```
+
+👉 Expected:
+
+```
+NAME       STATUS   ROLES    AGE   VERSION
+minikube   Ready    control-plane
+```
+
+---
+
+## 5. Check available ports (VERY IMPORTANT ⚠️)
+
+Make sure port **8080 or 80 is free**
+
+```bash
+lsof -i :8080
+```
+
+If busy → change port:
+
+```bash
+docker run -d -p 9090:80 nginx:1.20
+```
+
+---
+
+## 6. Internet connection (to pull images)
+
+Test:
+
+```bash
+ping google.com
+```
+
+---
+
+## 7. Disk space (your Mac is already tight 👀)
+
+```bash
+df -h
+```
+
+👉 If low:
+
+```bash
+docker system prune -a
+```
+
+(Be careful: deletes unused images)
+
+---
+
+# 🚀 Clean Demo Flow (Best Practice Version)
+
+If you want to present like a **pro instructor**, use this:
+
+```bash
+# 1. Verify environment
+docker --version
+minikube status
+
+# 2. Pull image
+docker pull nginx:1.20
+
+# 3. Confirm image
+docker images | grep nginx
+
+# 4. Run container
+docker run -d -p 8080:80 nginx:1.20
+
+# 5. Verify running container
+docker ps
+
+# 6. Test app
+curl http://localhost:8080
+```
+
+---
+
+# ⚠️ Fix Small Mistakes in Your Script
+
+### ❌ This is wrong:
+
+```bash
+docker run --detach --publish-all nginx1.20
+```
+
+👉 Correct:
+
+```bash
+docker run -d -P nginx:1.20
+```
+
+---
+
+### ❌ This is wrong:
+
+```bash
+docker ps ls
+```
+
+👉 Correct:
+
+```bash
+docker ps
+```
+
+---
+
+### ❌ WordPress container (missing DB ⚠️)
+
+```bash
+docker run -d -p 80:80 tutum/wordpress
+```
+
+👉 This is outdated and incomplete.
+
+Use:
+
+```bash
+docker run -d -p 8081:80 wordpress
+```
+
+---
+
+# 🔥 Pro-Level Additions (to impress students)
+
+### 1. Show logs
+
+```bash
+docker logs <container_id>
+```
+
+---
+
+### 2. Exec into container
+
+```bash
+docker exec -it <container_id> bash
+```
+
+---
+
+### 3. Remove container
+
+```bash
+docker rm -f <container_id>
+```
+
+---
+
+### 4. Show container details
+
+```bash
+docker inspect <container_id>
+```
+
+---
+
+# 🧠 Real DevOps Insight (Important)
+
+What you're doing here teaches:
+
+* Container lifecycle
+* Image vs Container
+* Port mapping
+* Stateless services
+
+BUT 👇
+
+👉 This is **NOT Kubernetes yet**
+
+This is just:
+
+> Docker runtime level
+
+Next step (important for LFS250):
+
+* Run Nginx using **Kubernetes Pod**
+* Use:
+
+```bash
+kubectl run nginx --image=nginx:1.20
+```
+
+---
+
+# 🔥 Final Advice (Based on Your Goal)
+
+Since you're preparing like an instructor + job-ready DevOps:
+
+You should structure your demo as:
+
+1. Docker basics (what you did ✅)
+2. Problem with Docker alone
+3. Introduce Kubernetes
+4. Deploy same Nginx in K8s
+
