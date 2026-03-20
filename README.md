@@ -53,6 +53,47 @@ Check status:
 ```
 minikube status
 ````
+
+Expected output:
+
+````
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+````
+
+### Quick Verification 
+
+Check Nodes with kubectl
+
+````
+kubectl get nodes
+````
+
+Expected:
+
+````
+NAME       STATUS   ROLES    AGE   VERSION
+minikube   Ready    control-plane   1m   v1.30.0
+````
+
+## Test a Pod
+
+````
+kubectl run nginx --image=nginx:1.20 --port=80
+kubectl get pods
+kubectl expose pod nginx --type=NodePort --port=80
+minikube service nginx
+````
+
+### Optional: View Dashboard
+
+minikube dashboard
+
+This opens the Kubernetes dashboard in your browser for visual monitoring — very handy for demos.
+
+
 ---
 
 # 👀  Pull NGINX Image Locally
