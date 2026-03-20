@@ -5,8 +5,8 @@
 
 Before running anything, verify these:
 
-1. Docker is installed and running
-## 1. Docker is installed and running
+
+### 1. Docker is installed and running
 
 ```bash
 docker --version
@@ -25,7 +25,7 @@ If not:
 
 ---
 
-## 2. Minikube is installed (for Kubernetes part)
+### 2. Minikube is installed (for Kubernetes part)
 
 ```bash
 minikube version
@@ -33,13 +33,13 @@ minikube version
 
 ---
 
-## 3. Minikube cluster is running
+### 3. Minikube cluster is running
 
 ```bash
 minikube status
 ```
 
-## Running container - Demo
+### Running container - Demo
 
  Start Minikube
 
