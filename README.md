@@ -1,6 +1,44 @@
 # Kubernetes-and-Cloud-Native-Essentials-LFS250
 
 
+## Pre-Flight Checklist 
+
+Before running anything, verify these:
+
+1. Docker is installed and running
+## 1. Docker is installed and running
+
+```bash
+docker --version
+```
+
+👉 Expected:
+
+```
+Docker version XX.X.X
+```
+
+If not:
+
+* Install Docker
+* Start Docker daemon
+
+---
+
+## 2. Minikube is installed (for Kubernetes part)
+
+```bash
+minikube version
+```
+
+---
+
+## 3. Minikube cluster is running
+
+```bash
+minikube status
+```
+
 ## Running container - Demo
 
  Start Minikube
