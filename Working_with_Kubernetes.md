@@ -136,7 +136,7 @@ manually: http://<minikube-ip>:<NodePort>
 
 # Find Minikube IP & NodePort Manually
 
-## 1. Get Minikube IP:
+### 1. Get Minikube IP:
    
 ```
 minikube ip
@@ -147,7 +147,7 @@ Example output:
 
 192.168.49.2
 ```
-# 2. Get the service NodePort:
+### 2. Get the service NodePort:
 
 ```
 kubectl get service nginx-demo-pod
@@ -170,7 +170,7 @@ http://192.168.49.2:31234
 ```
 You’ll see your Nginx page.
 
-## 3. Optional: Port Forward (Another Easy Way)✅ Best Option
+### 3. Optional: Port Forward (Another Easy Way)✅ Best Option
 
 You can port-forward a Pod directly to localhost:
 
