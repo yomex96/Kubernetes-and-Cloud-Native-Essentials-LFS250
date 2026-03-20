@@ -1018,7 +1018,7 @@ metadata:
 
 ---
 
-# 🔹 1. nodeSelector (Simple)
+### 1. nodeSelector (Simple)
 
 ```yaml id="nodesel"
 apiVersion: v1
@@ -1037,7 +1037,7 @@ spec:
 
 ---
 
-# 🔹 2. Node Affinity (Advanced)
+### 2. Node Affinity (Advanced)
 
 ```yaml id="affinity"
 apiVersion: v1
@@ -1064,7 +1064,7 @@ spec:
 
 ---
 
-# 🔹 3. nodeName (Manual Scheduling)
+### 3. nodeName (Manual Scheduling)
 
 ```yaml id="nodename"
 apiVersion: v1
@@ -1082,7 +1082,7 @@ spec:
 
 ---
 
-# 🔹 4. Topology Spread (High Availability)
+### 4. Topology Spread (High Availability)
 
 ```yaml id="spread"
 apiVersion: v1
@@ -1108,7 +1108,7 @@ spec:
 
 ---
 
-# 🔹 5. Taints (Apply to Node)
+### 5. Taints (Apply to Node)
 
 ```bash id="taintcmd"
 kubectl taint nodes worker-1 region=useast2:NoSchedule
@@ -1118,7 +1118,7 @@ kubectl taint nodes worker-1 region=useast2:NoSchedule
 
 ---
 
-# 🔹 6. Tolerations (Allow Pod)
+### 6. Tolerations (Allow Pod)
 
 ```yaml id="toleration"
 apiVersion: v1
@@ -1149,9 +1149,6 @@ spec:
 
 ---
 
-
-
----
 
 ## Local Setup of kubeView Options
 
