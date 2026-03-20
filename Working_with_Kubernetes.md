@@ -228,7 +228,7 @@ spec:
             sleep 1
           done
 ```
-# 🚀 How to Test Locally (Minikube)
+### 🚀 How to Test Locally (Minikube)
 
 Apply the Pod:
 ```
@@ -287,7 +287,7 @@ spec:
         - echo "The app is running!" && sleep 3600
 ```
 
-## 🚀 How to Test Locally (Minikube)
+### 🚀 How to Test Locally (Minikube)
 
 Apply the Pod:
 ```
@@ -989,8 +989,6 @@ metadata:
 
 ---
 
----
-
 # 🎯 Best Practice (From Your Content)
 
 * Use **least privilege** (avoid `cluster-admin`)
@@ -1004,6 +1002,156 @@ This is **perfect for your LFS250 demo + slides**.
 
 If you want, I can compress this into a **1-slide version (super high-impact)** or a **live demo script you can speak while typing commands**.
 
+
+ ## 9. Scheduling Objects  (nodeSelector,Node Affinity , nodeName,Topology Spread (High Availability) )
+
+
+* Kubernetes uses the **scheduler** to place Pods on Nodes
+* It checks:
+
+  * **Resources**
+  * **Constraints**
+  * **Policies**
+* You can control placement using:
+
+  * `nodeSelector` (simple)
+  * **Affinity / Anti-affinity** (advanced)
+  * `nodeName` (manual)
+  * **Topology Spread** (distribution)
+  * **Taints & Tolerations** (control access)
+
+---
+
+# 🔹 1. nodeSelector (Simple)
+
+```yaml id="nodesel"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+spec:
+  nodeSelector:
+    disktype: ssd
+  containers:
+    - name: nginx
+      image: nginx:1.19
+```
+
+👉 Hard rule (must match node label)
+
+---
+
+# 🔹 2. Node Affinity (Advanced)
+
+```yaml id="affinity"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-affinity
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: topology.kubernetes.io/zone
+                operator: In
+                values:
+                  - us-east-1a
+                  - us-east-1b
+  containers:
+    - name: nginx
+      image: nginx:1.19
+```
+
+👉 More flexible than nodeSelector
+
+---
+
+# 🔹 3. nodeName (Manual Scheduling)
+
+```yaml id="nodename"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-manual
+spec:
+  nodeName: worker-01
+  containers:
+    - name: nginx
+      image: nginx:1.19
+```
+
+👉 Bypasses scheduler (not recommended for production)
+
+---
+
+# 🔹 4. Topology Spread (High Availability)
+
+```yaml id="spread"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-spread
+  labels:
+    app: nginx
+spec:
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: ScheduleAnyway
+      labelSelector:
+        matchLabels:
+          app: nginx
+  containers:
+    - name: nginx
+      image: nginx:1.19
+```
+
+👉 Spreads Pods across zones/nodes
+
+---
+
+# 🔹 5. Taints (Apply to Node)
+
+```bash id="taintcmd"
+kubectl taint nodes worker-1 region=useast2:NoSchedule
+```
+
+👉 Blocks Pods from scheduling
+
+---
+
+# 🔹 6. Tolerations (Allow Pod)
+
+```yaml id="toleration"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-toleration
+spec:
+  tolerations:
+    - key: "region"
+      operator: "Equal"
+      value: "useast2"
+      effect: "NoSchedule"
+  containers:
+    - name: nginx
+      image: nginx:1.19
+```
+
+👉 Allows Pod on tainted node
+
+---
+
+# 🔑 Key Idea
+
+> **nodeSelector = simple filter**
+> **Affinity = smart rules**
+> **Taints = block nodes**
+> **Tolerations = allow pods**
+
+---
 
 
 
