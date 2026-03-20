@@ -823,7 +823,7 @@ spec:
 * **Secret → sensitive config (protect it)**
 ---
 
-# 🧠 Summary (ConfigMap)
+### 🧠 Summary (ConfigMap)
 
 A **ConfigMap** is used to store **non-sensitive configuration data** in Kubernetes.
 
@@ -895,8 +895,114 @@ These provide:
 ---
 
 
+ ## 8. Kubernetes Security (RBAC,Cluster Admin, Pod Security )
+ 
+A RoleBinding can grant alice and a CI/CD ServiceAccount access to read Pods within the development namespace.
+
+# 🔹 RBAC Example 
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: dev-pod-reader
+  namespace: development
+subjects:
+  - kind: User
+    name: alice
+  - kind: ServiceAccount
+    name: build-bot
+    namespace: ci
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+---
+A ClusterRoleBinding, on the other hand, might grant full cluster-wide admin privileges:
+
+# 🔹 Cluster Admin Example
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-admin-alice
+subjects:
+  - kind: User
+    name: alice
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+```
+
+---
+
+# 🔹 Pod Security (Namespace Enforcement)
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: secure-ns
+  labels:
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/warn: baseline
+    pod-security.kubernetes.io/audit: baseline
+```
+
+---
+
+# 🔹 Pod Security Levels
+
+* **Privileged** → no restrictions
+* **Baseline** → basic protection
+* **Restricted** → strongest security ✅
+
+---
+
+# 🔑 Key Idea
+
+> **Authentication → RBAC → Admission → Secure Workloads**
 
 
+# 🟢 Kubernetes Security (Short Summary)
+
+* Security is **end-to-end** (infrastructure → cluster → containers → network)
+* It must start at **design time** and is a **continuous process**
+* Key layers:
+
+  * **API Security** (Authentication, RBAC, Admission)
+  * **Network Security** (firewalls, NetworkPolicy)
+  * **Container Security** (minimal images, immutability)
+  * **Monitoring & Auditing**
+
+---
+
+# 🔹 Accessing the API Flow
+
+1. **Authentication** → verifies identity
+2. **Authorization (RBAC)** → controls access
+3. **Admission Controllers** → validate requests
+
+---
+
+---
+
+# 🎯 Best Practice (From Your Content)
+
+* Use **least privilege** (avoid `cluster-admin`)
+* Prefer **Role over ClusterRole**
+* Use **NetworkPolicy + RBAC + Pod Security** together
+* Continuously **monitor, audit, and improve**
+
+---
+
+This is **perfect for your LFS250 demo + slides**.
+
+If you want, I can compress this into a **1-slide version (super high-impact)** or a **live demo script you can speak while typing commands**.
 
 
 
