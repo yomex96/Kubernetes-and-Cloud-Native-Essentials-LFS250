@@ -497,14 +497,3 @@ kubectl run nginx --image=nginx:1.20
 
 ---
 
-# 🔥 Final Advice (Based on Your Goal)
-
-Since you're preparing like an instructor + job-ready DevOps:
-
-You should structure your demo as:
-
-1. Docker basics (what you did ✅)
-2. Problem with Docker alone
-3. Introduce Kubernetes
-4. Deploy same Nginx in K8s
-
