@@ -82,21 +82,52 @@ minikube   Ready    control-plane   1m   v1.30.0
 
 ````
 kubectl run nginx --image=nginx:1.20 --port=80
+
 kubectl get pods
+
 kubectl expose pod nginx --type=NodePort --port=80
+
 minikube service nginx
 ````
 
 ### Optional: View Dashboard
 
+````
 minikube dashboard
+````
 
 This opens the Kubernetes dashboard in your browser for visual monitoring — very handy for demos.
 
+---
+
+### Clean up 
+
+* To clean up your test Pod and Service in Minikube:
+
+```bash
+kubectl delete pod nginx && kubectl delete service nginx
+```
+
+* This removes the `nginx` Pod and its Service.
+* 
+* Confirm deletion with:
+
+```bash
+kubectl get pods
+kubectl get svc
+```
+
+* To completely reset Minikube (wipe all resources):
+
+```bash
+minikube delete && minikube start
+```
+
+* This deletes all Pods, Services, and the cluster, letting you start fresh.
 
 ---
 
-# 👀  Pull NGINX Image Locally
+# Pull NGINX Image Locally (Alternatively  uisng docker pull)
 
 ```bash
 docker pull nginx:1.20
