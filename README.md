@@ -1,8 +1,6 @@
 # Kubernetes-and-Cloud-Native-Essentials-LFS250
 
 
-Absolutely! I’ve reorganized and polished your Markdown for **clarity, flow, and readability** while keeping **all key information intact**. Here’s the revised version:
-
 ---
 
 # Kubernetes-and-Cloud-Native-Essentials-LFS250
@@ -103,15 +101,6 @@ minikube service nginx
 
 ---
 
-### Optional: View Dashboard
-
-```bash
-minikube dashboard
-```
-
-Opens the Kubernetes dashboard in your browser for visual monitoring — very handy for demos.
-
-
 #  Manual Way
 
 If you want to manually open it:
@@ -125,6 +114,10 @@ Example output:
 ```
 NAME    TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
 nginx   NodePort   10.96.123.45   <none>        80:30001/TCP   2m
+
+```
+```
+http://<minikube-ip>:<node-port>
 ```
 Here 30001 is the NodePort.
 
@@ -139,6 +132,16 @@ Open in browser:
 ```
 http://192.168.49.2:30001
 ```
+
+
+### Optional: View Dashboard
+
+```bash
+minikube dashboard
+```
+
+Opens the Kubernetes dashboard in your browser for visual monitoring — very handy for demos.
+
 ---
 
 ## 🧹 Clean Up
