@@ -1,10 +1,6 @@
 # Kubernetes-and-Cloud-Native-Essentials-LFS250
 
 
----
-
-# Kubernetes-and-Cloud-Native-Essentials-LFS250
-
 ## 🛫 Pre-Flight Checklist
 
 Before running anything, verify these:
