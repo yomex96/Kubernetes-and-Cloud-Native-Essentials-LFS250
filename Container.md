@@ -1,4 +1,4 @@
-# Container  samples 
+# Container  samples for hands-on
 
 vim  my-app.py
 
@@ -49,6 +49,9 @@ docker ps
 ```
 ```
 docker images
+```
+```
+ docker images | grep my-app.py  
 ```
 
 
