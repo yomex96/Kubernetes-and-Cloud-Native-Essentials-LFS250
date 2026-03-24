@@ -10,7 +10,7 @@
 
 ---
 
-# 🔥 Simple Way to Explain to Students
+# 🔥 Simplest Way 
 
 > “Kubernetes is like running a factory.
 > If you only have a small shop, you don’t need a factory.”
