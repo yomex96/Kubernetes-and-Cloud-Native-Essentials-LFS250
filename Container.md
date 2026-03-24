@@ -91,25 +91,46 @@ docker exec -it 2d6633592634 sh
 ```
 
 1. Shell built-ins
+   
  ```
 ls
+ ```
+ ```
 pwd
+ ```
+ ```
 echo $PATH
+ ```
+ ```
 cd /app
+ ```
+
 ```
+hostname -i
+```
+```
+
 3. Python (your container has Python)
+
 ```
 python
 python3 my-app.py
 ```
+
 5. View files
+
+
  ```
 cat my-app.py
 ls -al
 ```
+
 7. Run scripts or commands that exist in the image
+
+
  ```
 pip list
 python -m http.server 8000
 ```
+
                        
