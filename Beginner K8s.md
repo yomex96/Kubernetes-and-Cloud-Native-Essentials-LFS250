@@ -337,4 +337,174 @@ Companies move to Kubernetes when:
 ---
 
 
+Great question — this is exactly what helps beginners “connect the dots” 👇
+
+---
+
+# 🧩 What Applications Does Kubernetes Run?
+
+👉 **Kubernetes runs containerized applications**
+
+That means:
+
+* Any app packaged with Docker
+* Usually modern, scalable apps
+
+---
+
+# 🏗️ Types of Applications Kubernetes Runs
+
+## 🌐 1. Web Applications
+
+* Frontend + Backend apps
+
+**Examples:**
+
+* E-commerce websites
+* Social media platforms
+* SaaS dashboards
+
+👉 Kubernetes ensures:
+
+* App is always available
+* Handles thousands/millions of users
+
+---
+
+## 🔌 2. APIs (Backend Services)
+
+* REST APIs or GraphQL APIs
+
+**Examples:**
+
+* Payment APIs
+* Authentication services
+* Mobile app backends
+
+👉 Kubernetes helps:
+
+* Scale API when traffic increases
+* Restart if it crashes
+
+---
+
+## 🧱 3. Microservices Applications
+
+* Apps split into many small services
+
+**Example:**
+
+* One service = login
+* One service = payments
+* One service = notifications
+
+👉 Kubernetes is **perfect for this**
+
+---
+
+## 📊 4. Data Processing & Batch Jobs
+
+* Background tasks
+
+**Examples:**
+
+* Sending emails
+* Processing logs
+* Running analytics jobs
+
+👉 Kubernetes can:
+
+* Run jobs automatically
+* Schedule tasks (like cron jobs)
+
+---
+
+## 🤖 5. AI / Machine Learning Apps
+
+* Model training & inference
+
+**Examples:**
+
+* Recommendation systems
+* Chatbots
+* Image recognition
+
+👉 Kubernetes helps:
+
+* Scale GPU/CPU workloads
+* Manage heavy processing
+
+---
+
+## 🎮 6. Real-Time Applications
+
+* Apps that need fast responses
+
+**Examples:**
+
+* Chat apps
+* Live streaming
+* Online gaming backends
+
+👉 Kubernetes ensures:
+
+* Low downtime
+* Load balancing
+
+---
+
+## 🗄️ 7. Databases (Sometimes ⚠️)
+
+* MySQL, PostgreSQL, MongoDB
+
+👉 Possible in Kubernetes, but:
+
+* More complex
+* Many companies prefer managed DB services instead
+
+---
+
+# 🧠 Simple Way 
+
+👉 Kubernetes does NOT care what your app is.
+
+It just runs:
+
+> “Containers that hold your application”
+
+---
+
+# 🎯 Real-World Companies Using Kubernetes
+
+* Netflix → streaming platform
+* Spotify → music app
+* Airbnb → booking platform
+
+They use Kubernetes to handle:
+
+* Millions of users
+* High traffic
+* Global scale
+
+---
+
+# 🚫 What Kubernetes is NOT for
+
+* Simple HTML websites
+* Small school projects
+* Basic apps with few users
+
+👉 That’s overkill
+
+---
+
+# 🧠 Key Takeaway
+
+> Kubernetes runs **any application that can be containerized**,
+> especially apps that need **scaling, reliability, and automation**.
+
+---
+
+
+
 
