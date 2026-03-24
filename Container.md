@@ -111,6 +111,7 @@ echo $PATH
 cd /app
  ```
 
+to see the container ip
 ```
 hostname -i
 ```
