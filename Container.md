@@ -44,6 +44,7 @@ build the dockerfile to image
 ```
 docker ps
 ```
+full container information
  ```
  docker ps -a
 ```
@@ -53,11 +54,14 @@ docker images
 ```
  docker images | grep my-flask-app  
 ```
-
+run the image
 ```
  docker run -d -p 5000:5000 --name my-flask  my-flask-app 
 ```
-
+check again
+```
+docker ps
+```
 
 
 
