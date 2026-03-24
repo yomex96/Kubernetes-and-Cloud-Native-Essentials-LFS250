@@ -44,26 +44,72 @@ build the dockerfile to image
 ```
 docker ps
 ```
-full container information
+
+getting container & image informations
  ```
  docker ps -a
 ```
+
+getting image informations
 ```
 docker images
 ```
+
+getting specific image informations
 ```
  docker images | grep my-flask-app  
 ```
+
 run the image
 ```
  docker run -d -p 5000:5000 --name my-flask  my-flask-app 
 ```
+
+check again
+```
+docker ps
+```
+stop 
+```
+docker stop c16f893224e4
+```
+
+remove 
+```
+docker rm c16f893224e4 
+```
+
 check again
 ```
 docker ps
 ```
 
+## interact with shell
 
+```
+docker exec -it 2d6633592634 sh
+```
 
-
+1. Shell built-ins
+ ```
+ls
+pwd
+echo $PATH
+cd /app
+```
+3. Python (your container has Python)
+```
+python
+python3 my-app.py
+```
+5. View files
+ ```
+cat my-app.py
+ls -al
+```
+7. Run scripts or commands that exist in the image
+ ```
+pip list
+python -m http.server 8000
+```
                        
