@@ -1,3 +1,5 @@
+# Container  samples 
+
 vim  my-app.py
 
 
@@ -30,5 +32,28 @@ EXPOSE 5000
 CMD ["python", "my-app.py"]
 
 ```
+
+build the dockerfile to image 
+
+```
+ docker build -t my-app.py .
+```
+
+ common docker command 
+
+```
+docker ps
+```
+ ```
+ docker ps -a
+```
+```
+docker images
+```
+
+
+
+
+
 
                        
