@@ -36,7 +36,7 @@ CMD ["python", "my-app.py"]
 build the dockerfile to image 
 
 ```
- docker build -t my-app.py .
+ docker build -t my-flask-app .
 ```
 
  common docker command 
@@ -51,9 +51,12 @@ docker ps
 docker images
 ```
 ```
- docker images | grep my-app.py  
+ docker images | grep my-flask-app  
 ```
 
+```
+docker run -d -p 5000:5000 --name my-flask  my-flask-app
+```
 
 
 
