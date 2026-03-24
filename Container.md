@@ -65,13 +65,19 @@ run the image
  docker run -d -p 5000:5000 --name my-flask  my-flask-app 
 ```
 
-check again
+check again to see if the image exist
+
 ```
 docker ps
 ```
 stop 
 ```
 docker stop c16f893224e4
+```
+
+test the container 
+```
+curl http://127.0.0.1:5000 
 ```
 
 remove 
@@ -108,7 +114,7 @@ cd /app
 ```
 hostname -i
 ```
-```
+
 
 3. Python (your container has Python)
 
